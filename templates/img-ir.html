@@ -40,21 +40,19 @@
   {% csrf_token %}
 </form>
 
+{% if res %}
 <div class="ui segment">
   <div class="ui large header">Your Input:</div>
-  <img class="ui centered small rounded image" src="/static/count.png">
+  <img class="ui centered small rounded image" src="{{ res }}">
   <div class="ui divider"></div>
   <div class="ui large header">Information Retrieval Result:</div>
   <div class="ui small images">
-    <img class="ui rounded image" src="/static/count.png">
-    <img class="ui rounded image" src="/static/count.png">
-    <img class="ui rounded image" src="/static/count.png">
-    <img class="ui rounded image" src="/static/count.png">
-    <img class="ui rounded image" src="/static/count.png">
-    <img class="ui rounded image" src="/static/count.png">
+    {% for item in res %}
+    <img class="ui rounded image" src="{{ item }}">
+    {% endfor %}
   </div>
-
 </div>
+{% endif %}
 {% endblock %}
 
 {% block my-script %}

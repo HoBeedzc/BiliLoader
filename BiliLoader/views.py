@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from model.BM25.core import bm25f
+from model.PictureIR.core import picIR
 import pandas as pd
 import os
 from BiliLoader.settings import BASE_DIR
@@ -23,7 +24,12 @@ def index(request):
 def predict(request):
     if request.method == "GET":
         return render(request, 'predict.html', context=ctx)
-
+    picture_obj = request.FILES.get('cover')
+    path = os.path.join(BASE_DIR, 'static/cache/', picture_obj.name)
+    print(path)
+    with open(path, 'wb') as f:
+        for content in picture_obj.chunks():
+            f.write(content)
     return render(request, 'predict.html', context=ctx)
 
 
@@ -48,8 +54,16 @@ def text_ir(request):
 def img_ir(request):
     if request.method == "GET":
         return render(request, 'img-ir.html', context=ctx)
-
-    return render(request, 'img-ir.html', context=ctx)
+    limit = request.POST.get('limit', None)
+    picture_obj = request.FILES.get('cover')
+    path = os.path.join(BASE_DIR, 'static/cache/', picture_obj.name)
+    with open(path, 'wb') as f:
+        for content in picture_obj.chunks():
+            f.write(content)
+    if not limit:
+        limit = '6'
+    res = picIR(path, limit=limit)
+    return render(request, 'img-ir.html', context={'res': res, 'input': path})
 
 
 def credit(request):
