@@ -7,4 +7,48 @@
 {% endblock %}
 
 {% block center-content %}
+<div class="ui segment">
+  <h2 class="ui center aligned icon header">
+    <i class="closed captioning icon"></i>
+    Text Information Retrieval Demo
+  </h2>
+</div>
+
+<form method="get" target="{% url 'text-ir' %}">
+  <div class="ui icon input" style="left: 35%;width: 25%;">
+    <input type="text" placeholder="Search..." name="search_for" value="{{ request.GET.search_for }}">
+    <div style="padding-left: 10px"> &nbsp; </div>
+    <button type="submit" class="ui right labeled icon button">
+      <i class="right arrow icon"></i>
+      Go
+    </button>
+  </div>
+</form>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th style="width: 100px;">是否已选</th>
+      <th style="width: 200px;">课程名称</th>
+      <th style="width: 100px;">学分</th>
+      <th style="width: 100px;">开课年级</th>
+      <th style="width: 100px;">开课学期</th>
+      <th>必修专业</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="ui fitted toggle checkbox">
+          <input type="checkbox" class="cc-course-checkbox" control-id="ControlID-5"><label for=""></label>
+        </div>
+      </td>
+      <td class="cc-course-name">运筹学（二）</td>
+      <td class="cc-course-credit">2</td>
+      <td class="cc-course-grade">大二</td>
+      <td class="cc-course-term">春季</td>
+      <td class="cc-course-major">信息管理与信息系统|工业工程|工程管理|能源经济|经济统计|金融工程</td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}
