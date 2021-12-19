@@ -14,7 +14,7 @@
   </h2>
 </div>
 
-<form method="get" target="{% url 'predict' %}">
+<form method="post" target="{% url 'predict' %}" enctype="multipart/form-data">
   <div class="ui icon input">
     <div class="ui labeled input">
       <div class="ui label">
@@ -43,34 +43,43 @@
       Go
     </button>
   </div>
+{% csrf_token %}
 </form>
 
 <table class="ui celled table">
   <thead>
     <tr>
       <th style="width: 100px;">序号</th>
-      <th style="width: 200px;">封面</th>
       <th style="width: 100px;">BV号</th>
       <th style="width: 100px;">标题</th>
       <th style="width: 100px;">简介</th>
-      <th style="width: 100px;">投币数</th>
-      <th style="width: 100px;">点赞数</th>
-      <th style="width: 100px;">收藏数</th>
+      <th style="width: 100px;">时长</th>
+      <th style="width: 100px;">播放量</th>
       <th style="width: 100px;">直达连接</th>
     </tr>
   </thead>
   <tbody>
+  {% for key,value in res.items %}
+      <tr>
+      <td>{{ key }}</td>
+      <td>{{ value.bvid }}</td>
+      <td>{{ value.title }}</td>
+      <td>{{ value.describe }}</td>
+      <td>{{ value.duration }}</td>
+      <td>{{ value.playback }}</td>
+      <td>{{ value.line }}</td>
+      </tr>
+  {% endfor %}
     <tr>
-      <td>
-        <div class="ui fitted toggle checkbox">
-          <input type="checkbox" class="cc-course-checkbox"><label for=""></label>
-        </div>
-      </td>
-      <td class="cc-course-name">运筹学（二）</td>
-      <td class="cc-course-credit">2</td>
-      <td class="cc-course-grade">大二</td>
-      <td class="cc-course-term">春季</td>
-      <td class="cc-course-major">信息管理与信息系统|工业工程|工程管理|能源经济|经济统计|金融工程</td>
+      <td>2</td>
+      <td>运筹学（二）</td>
+      <td>BV1xb4y1t7Lg</td>
+      <td>关于我莫名其妙上热搜第一，又被当地政府请去喝茶这件事</td>
+      <td>记录离谱的一周；感谢大家！</td>
+      <td>5537238</td>
+      <td>31805</td>
+      <td>96652</td>
+      <td>https://www.bilibili.com/video/av634139543</td>
     </tr>
   </tbody>
 </table>

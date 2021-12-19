@@ -14,20 +14,14 @@
   </h2>
 </div>
 
-<form method="get" target="{% url 'img-ir' %}">
+<form method="post" target="{% url 'img-ir' %}" enctype="multipart/form-data">
   <div class="ui icon input">
     <div class="ui labeled input">
       <div class="ui label">
-        Keywords
+        Key Image
       </div>
-      <input type="text" placeholder="Search..." name="search_for" value="{{ request.GET.search_for }}">
-    </div>
-    <div style="padding-left: 10px"> &nbsp; </div>
-    <div class="ui labeled input">
-      <div class="ui label">
-        Title Weight
-      </div>
-      <input type="text" placeholder="title weight" name="title_weight" value="{{ request.GET.title_weight }}">
+      <input id="upload-select-name" type="text" placeholder="No image selected" name="file-name" style="cursor: pointer" onclick="fileUploadButtonReload()" readonly>
+      <input id="upload-select" type="file" name="cover" accept=".jpg" style="display: none">
     </div>
     <div style="padding-left: 10px"> &nbsp; </div>
     <button type="submit" class="ui right labeled icon button">
@@ -35,6 +29,7 @@
       Go
     </button>
   </div>
+{% csrf_token %}
 </form>
 
 <table class="ui celled table">
@@ -63,4 +58,24 @@
     </tr>
   </tbody>
 </table>
+{% endblock %}
+
+{% block my-script %}
+<script>
+function fileUploadButtonReload() { // 文件上传按钮重载
+    $("#upload-select").click();
+    $("#upload-select").bind("input propertychange",fileUploadButtonReloadName);
+}
+
+function fileUploadButtonReloadName() {
+    var filepath,filename;
+    filepath = $("#upload-select").val();
+    filename = filepath.substring(filepath.lastIndexOf("\\")+1);
+    if (filename) {
+        $("#upload-select-name").show().val("Selected: " + filename);
+    } else {
+        $("#upload-select-name").show().text("No file selected");
+    }
+}
+</script>
 {% endblock %}

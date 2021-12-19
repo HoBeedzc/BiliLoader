@@ -40,30 +40,27 @@
 <table class="ui celled table">
   <thead>
     <tr>
-      <th style="width: 100px;">序号</th>
-      <th style="width: 200px;">封面</th>
-      <th style="width: 100px;">BV号</th>
-      <th style="width: 100px;">标题</th>
-      <th style="width: 100px;">简介</th>
-      <th style="width: 100px;">投币数</th>
-      <th style="width: 100px;">点赞数</th>
-      <th style="width: 100px;">收藏数</th>
-      <th style="width: 100px;">直达连接</th>
+      <th style="max-width: 50px;">序号</th>
+      <th style="max-width: 80px;">BV号</th>
+      <th style="max-width: 100px;">标题</th>
+      <th style="max-width: 100px;">简介</th>
+      <th style="max-width: 40px;">时长</th>
+      <th style="max-width: 50px;">播放量</th>
+      <th style="max-width: 200px;">直达连接</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        <div class="ui fitted toggle checkbox">
-          <input type="checkbox" class="cc-course-checkbox" control-id="ControlID-5"><label for=""></label>
-        </div>
-      </td>
-      <td>运筹学（二）</td>
-      <td>2</td>
-      <td>大二</td>
-      <td>春季</td>
-      <td>信息管理与信息系统|工业工程|工程管理|能源经济|经济统计|金融工程</td>
-    </tr>
+  {% for key,value in res.items %}
+      <tr>
+      <td style="max-width: 50px;">{{ key }}</td>
+      <td style="max-width: 80px;">{{ value.bvid }}</td>
+      <td style="max-width: 100px;">{{ value.title }}</td>
+      <td style="max-width: 100px;">{{ value.describe }}</td>
+      <td style="max-width: 40px;">{{ value.duration }}</td>
+      <td style="max-width: 50px;">{{ value.playback }}</td>
+      <td style="max-width: 200px;">{{ value.line }}</td>
+      </tr>
+  {% endfor %}
   </tbody>
 </table>
 {% endblock %}
