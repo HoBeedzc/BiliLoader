@@ -70,5 +70,4 @@ def picIR(input_path, limit='6'):
         for p in ['21a', '161', '162', '239']:
             if os.path.exists(pic_path + '\\' + p + '\\' + top_lis[i][0]):
                 res_lis.append(pic_path + '\\' + p + '\\' + top_lis[i][0])
-
     return res_lis

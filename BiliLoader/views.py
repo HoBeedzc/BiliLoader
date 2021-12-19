@@ -7,6 +7,7 @@ from model.PictureIR.core import picIR
 import pandas as pd
 import os
 from BiliLoader.settings import BASE_DIR
+import shutil
 
 # Create your views here.
 
@@ -63,6 +64,12 @@ def img_ir(request):
     if not limit:
         limit = '6'
     res = picIR(path, limit=limit)
+
+    for i, v in enumerate(res):
+        res[i] = os.path.join(BASE_DIR, 'static/cache/', os.path.split(v)[1])
+        shutil.copyfile(v, res[i])
+        res[i] = os.path.join('/static/cache/', os.path.split(v)[1])
+    path = os.path.join('/static/cache/', picture_obj.name)
     return render(request, 'img-ir.html', context={'res': res, 'input': path})
 
 
