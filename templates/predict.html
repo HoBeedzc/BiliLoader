@@ -14,9 +14,29 @@
   </h2>
 </div>
 
-<form method="get" target="{% url 'img-ir' %}">
-  <div class="ui icon input" style="left: 35%;width: 25%;">
-    <input type="text" placeholder="Search..." name="search_for" value="{{ request.GET.search_for }}">
+<form method="get" target="{% url 'predict' %}">
+  <div class="ui icon input">
+    <div class="ui labeled input">
+      <div class="ui label">
+        Title
+      </div>
+      <input type="text" placeholder="title" name="title" value="{{ request.GET.title }}">
+    </div>
+    <div style="padding-left: 10px"> &nbsp; </div>
+    <div class="ui labeled input">
+      <div class="ui label">
+        Cover
+      </div>
+      <input id="upload-select-name" type="text" placeholder="No file selected" name="file-name" style="cursor: pointer" onclick="fileUploadButtonReload()" readonly>
+      <input id="upload-select" type="file" name="cover" accept=".jpg" style="display: none">
+    </div>
+    <div style="padding-left: 10px"> &nbsp; </div>
+    <div class="ui labeled input">
+      <div class="ui label">
+        Duration
+      </div>
+      <input type="text" placeholder="duration" name="duration" value="{{ request.GET.duration }}">
+    </div>
     <div style="padding-left: 10px"> &nbsp; </div>
     <button type="submit" class="ui right labeled icon button">
       <i class="right arrow icon"></i>
@@ -28,19 +48,22 @@
 <table class="ui celled table">
   <thead>
     <tr>
-      <th style="width: 100px;">是否已选</th>
-      <th style="width: 200px;">课程名称</th>
-      <th style="width: 100px;">学分</th>
-      <th style="width: 100px;">开课年级</th>
-      <th style="width: 100px;">开课学期</th>
-      <th>必修专业</th>
+      <th style="width: 100px;">序号</th>
+      <th style="width: 200px;">封面</th>
+      <th style="width: 100px;">BV号</th>
+      <th style="width: 100px;">标题</th>
+      <th style="width: 100px;">简介</th>
+      <th style="width: 100px;">投币数</th>
+      <th style="width: 100px;">点赞数</th>
+      <th style="width: 100px;">收藏数</th>
+      <th style="width: 100px;">直达连接</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
         <div class="ui fitted toggle checkbox">
-          <input type="checkbox" class="cc-course-checkbox" control-id="ControlID-5"><label for=""></label>
+          <input type="checkbox" class="cc-course-checkbox"><label for=""></label>
         </div>
       </td>
       <td class="cc-course-name">运筹学（二）</td>
@@ -51,4 +74,24 @@
     </tr>
   </tbody>
 </table>
+{% endblock %}
+
+{% block my-script %}
+<script>
+function fileUploadButtonReload() { // 文件上传按钮重载
+    $("#upload-select").click();
+    $("#upload-select").bind("input propertychange",fileUploadButtonReloadName);
+}
+
+function fileUploadButtonReloadName() {
+    var filepath,filename;
+    filepath = $("#upload-select").val();
+    filename = filepath.substring(filepath.lastIndexOf("\\")+1);
+    if (filename) {
+        $("#upload-select-name").show().val("Selected: " + filename);
+    } else {
+        $("#upload-select-name").show().text("No file selected");
+    }
+}
+</script>
 {% endblock %}

@@ -15,8 +15,20 @@
 </div>
 
 <form method="get" target="{% url 'img-ir' %}">
-  <div class="ui icon input" style="left: 35%;width: 25%;">
-    <input type="text" placeholder="Search..." name="search_for" value="{{ request.GET.search_for }}">
+  <div class="ui icon input">
+    <div class="ui labeled input">
+      <div class="ui label">
+        Keywords
+      </div>
+      <input type="text" placeholder="Search..." name="search_for" value="{{ request.GET.search_for }}">
+    </div>
+    <div style="padding-left: 10px"> &nbsp; </div>
+    <div class="ui labeled input">
+      <div class="ui label">
+        Title Weight
+      </div>
+      <input type="text" placeholder="title weight" name="title_weight" value="{{ request.GET.title_weight }}">
+    </div>
     <div style="padding-left: 10px"> &nbsp; </div>
     <button type="submit" class="ui right labeled icon button">
       <i class="right arrow icon"></i>
