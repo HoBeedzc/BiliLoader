@@ -20,8 +20,16 @@
       <div class="ui label">
         Key Image
       </div>
-      <input id="upload-select-name" type="text" placeholder="No image selected" name="file-name" style="cursor: pointer" onclick="fileUploadButtonReload()" readonly>
+      <input id="upload-select-name" type="text" placeholder="No image selected" name="file-name"
+        style="cursor: pointer" onclick="fileUploadButtonReload()" readonly>
       <input id="upload-select" type="file" name="cover" accept=".jpg" style="display: none">
+    </div>
+    <div style="padding-left: 10px"> &nbsp; </div>
+    <div class="ui labeled input">
+      <div class="ui label">
+        Limit
+      </div>
+      <input type="text" placeholder="Limit" name="limit" value="{{ request.GET.limit }}">
     </div>
     <div style="padding-left: 10px"> &nbsp; </div>
     <button type="submit" class="ui right labeled icon button">
@@ -29,7 +37,7 @@
       Go
     </button>
   </div>
-{% csrf_token %}
+  {% csrf_token %}
 </form>
 
 <table class="ui celled table">
@@ -62,20 +70,20 @@
 
 {% block my-script %}
 <script>
-function fileUploadButtonReload() { // 文件上传按钮重载
+  function fileUploadButtonReload() { // 文件上传按钮重载
     $("#upload-select").click();
-    $("#upload-select").bind("input propertychange",fileUploadButtonReloadName);
-}
+    $("#upload-select").bind("input propertychange", fileUploadButtonReloadName);
+  }
 
-function fileUploadButtonReloadName() {
-    var filepath,filename;
+  function fileUploadButtonReloadName() {
+    var filepath, filename;
     filepath = $("#upload-select").val();
-    filename = filepath.substring(filepath.lastIndexOf("\\")+1);
+    filename = filepath.substring(filepath.lastIndexOf("\\") + 1);
     if (filename) {
-        $("#upload-select-name").show().val("Selected: " + filename);
+      $("#upload-select-name").show().val("Selected: " + filename);
     } else {
-        $("#upload-select-name").show().text("No file selected");
+      $("#upload-select-name").show().text("No file selected");
     }
-}
+  }
 </script>
 {% endblock %}
