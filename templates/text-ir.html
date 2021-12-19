@@ -37,6 +37,7 @@
   </div>
 </form>
 
+{% if res %}
 <table class="ui celled table">
   <thead>
     <tr>
@@ -50,8 +51,8 @@
     </tr>
   </thead>
   <tbody>
-  {% for key,value in res.items %}
-      <tr>
+    {% for key,value in res.items %}
+    <tr>
       <td style="max-width: 50px;">{{ key }}</td>
       <td style="max-width: 80px;">{{ value.bvid }}</td>
       <td style="max-width: 100px;">{{ value.title }}</td>
@@ -59,8 +60,9 @@
       <td style="max-width: 40px;">{{ value.duration }}</td>
       <td style="max-width: 50px;">{{ value.playback }}</td>
       <td style="max-width: 200px;">{{ value.line }}</td>
-      </tr>
-  {% endfor %}
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endblock %}

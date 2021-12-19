@@ -7,8 +7,35 @@
 {% endblock %}
 
 {% block center-content %}
-<h2 class="ui center aligned icon header">
-  <i class="compass icon"></i>
-  BiliLoader by EightLab Tutorial
-</h2>
+<div class="ui segment">
+  <h2 class="ui center aligned icon header">
+    <i class="compass icon"></i>
+    BiliLoader by EightLab Tutorial
+  </h2>
+</div>
+
+<div class="ui animated button" tabindex="0">
+  <div class="visible content"><a href="{% url 'text-ir' %}" class="ui header item"> Text Information Retrieval </a>
+  </div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+
+<div class="ui animated button" tabindex="0">
+  <div class="visible content"><a href="{% url 'img-ir' %}" class="ui header item"> Image Information Retrieval </a>
+  </div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+
+<div class="ui animated button" tabindex="0">
+  <div class="visible content"><a href="{% url 'predict' %}" class="ui header item"> Playback Volume Prediction </a>
+  </div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+
 {% endblock %}
