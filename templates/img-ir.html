@@ -40,32 +40,21 @@
   {% csrf_token %}
 </form>
 
-<table class="ui celled table">
-  <thead>
-    <tr>
-      <th style="width: 100px;">是否已选</th>
-      <th style="width: 200px;">课程名称</th>
-      <th style="width: 100px;">学分</th>
-      <th style="width: 100px;">开课年级</th>
-      <th style="width: 100px;">开课学期</th>
-      <th>必修专业</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <div class="ui fitted toggle checkbox">
-          <input type="checkbox" class="cc-course-checkbox" control-id="ControlID-5"><label for=""></label>
-        </div>
-      </td>
-      <td class="cc-course-name">运筹学（二）</td>
-      <td class="cc-course-credit">2</td>
-      <td class="cc-course-grade">大二</td>
-      <td class="cc-course-term">春季</td>
-      <td class="cc-course-major">信息管理与信息系统|工业工程|工程管理|能源经济|经济统计|金融工程</td>
-    </tr>
-  </tbody>
-</table>
+<div class="ui segment">
+  <div class="ui large header">Your Input:</div>
+  <img class="ui centered small rounded image" src="/static/count.png">
+  <div class="ui divider"></div>
+  <div class="ui large header">Information Retrieval Result:</div>
+  <div class="ui small images">
+    <img class="ui rounded image" src="/static/count.png">
+    <img class="ui rounded image" src="/static/count.png">
+    <img class="ui rounded image" src="/static/count.png">
+    <img class="ui rounded image" src="/static/count.png">
+    <img class="ui rounded image" src="/static/count.png">
+    <img class="ui rounded image" src="/static/count.png">
+  </div>
+
+</div>
 {% endblock %}
 
 {% block my-script %}
