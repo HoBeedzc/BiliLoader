@@ -17,25 +17,29 @@
 <div class="ui animated button" tabindex="0">
   <div class="visible content"><a href="{% url 'text-ir' %}" class="ui header item"> Text Information Retrieval </a>
   </div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
+  <a href="{% url 'text-ir' %}">
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </a>
 </div>
 
 <div class="ui animated button" tabindex="0">
   <div class="visible content"><a href="{% url 'img-ir' %}" class="ui header item"> Image Information Retrieval </a>
-  </div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
+  </div><a href="{% url 'img-ir' %}">
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </a>
 </div>
 
 <div class="ui animated button" tabindex="0">
   <div class="visible content"><a href="{% url 'predict' %}" class="ui header item"> Playback Volume Prediction </a>
-  </div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
+  </div><a href="{% url 'predict' %}">
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </a>
 </div>
 
 {% endblock %}
